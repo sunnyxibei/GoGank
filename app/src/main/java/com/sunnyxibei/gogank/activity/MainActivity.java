@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sdsmdg.tastytoast.TastyToast;
@@ -26,13 +25,12 @@ import com.sunnyxibei.gogank.http.HttpMethods;
 
 import java.util.List;
 
-import rx.Subscriber;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
-    private ActionBarDrawerToggle mDrawerToggle;
     private RecyclerView mRecyclerView;
     private GankAdapter adapter;
     private List<Results> results;
@@ -55,23 +53,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void initActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         setupDrawerContent(mNavigationView);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.open, R.string.close);
         mDrawerToggle.syncState();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
     }
 
     private void initData() {
-        Subscriber<NewsBean> subscriber = new Subscriber<NewsBean>() {
-            @Override
-            public void onCompleted() {
-                TastyToast.makeText(SunnyApplication.getContext(),
-                        "Loading Success",TastyToast.LENGTH_SHORT,TastyToast.SUCCESS);
-            }
+        DisposableSubscriber<NewsBean> subscriber = new DisposableSubscriber<NewsBean>() {
 
             @Override
             public void onError(Throwable e) {
@@ -79,29 +74,35 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onComplete() {
+                TastyToast.makeText(SunnyApplication.getContext(),
+                        "Loading Success", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
+            }
+
+            @Override
             public void onNext(NewsBean newsBean) {
                 if (newsBean.error) {
                     TastyToast.makeText(SunnyApplication.getContext(),
-                            "Loading Failure",TastyToast.LENGTH_SHORT,TastyToast.ERROR);
+                            "Loading Failure", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
                     return;
                 }
                 LinearLayoutManager layoutManager =
-                        new LinearLayoutManager(SunnyApplication.getContext(),LinearLayoutManager.VERTICAL,false);
+                        new LinearLayoutManager(SunnyApplication.getContext(), LinearLayoutManager.VERTICAL, false);
                 mRecyclerView.setLayoutManager(layoutManager);
                 results = newsBean.results;
                 adapter = new GankAdapter(results);
                 adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_BOTTOM | BaseQuickAdapter.SCALEIN);
                 mRecyclerView.setAdapter(adapter);
-                adapter.setOnRecyclerViewItemClickListener((View view, int position) -> {
-                        Results result = MainActivity.this.results.get(position);
-                        Intent intent = new Intent(MainActivity.this, BrowserActivity.class);
-                        intent.putExtra(GlobalConstant.DESC_URL,result.url);
-                        intent.putExtra(GlobalConstant.TITLE,result.desc);
-                        startActivity(intent);
+                adapter.setOnItemClickListener((adapter, view, position) -> {
+                    Results result = MainActivity.this.results.get(position);
+                    Intent intent = new Intent(MainActivity.this, BrowserActivity.class);
+                    intent.putExtra(GlobalConstant.DESC_URL, result.url);
+                    intent.putExtra(GlobalConstant.TITLE, result.desc);
+                    startActivity(intent);
                 });
             }
         };
-        HttpMethods.getInstance().getNews(subscriber, "Android", 10, 1);
+        HttpMethods.getInstance().getNews(subscriber);
     }
 
     @Override

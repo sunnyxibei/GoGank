@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by jiayuanbin on 2016/8/7.
  */
-public class GankAdapter extends BaseQuickAdapter<Results> {
+public class GankAdapter extends BaseQuickAdapter<Results,BaseViewHolder> {
 
 
     public GankAdapter(List<Results> data) {

@@ -11,7 +11,7 @@ import com.sdsmdg.tastytoast.TastyToast;
 
 public class SunnyApplication extends Application {
 
-    private static Context context;
+    private static SunnyApplication context;
 
     @Override
     public void onCreate() {

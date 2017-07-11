@@ -48,6 +48,7 @@ public class BrowserActivity extends AppCompatActivity {
 
     private void initActionBar() {
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setTitle(title);
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
