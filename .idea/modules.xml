@@ -3,11 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GoGank.iml" filepath="$PROJECT_DIR$/.idea/GoGank.iml" />
-      <module fileurl="file://E:\workspace\GoGank\GoGank.iml" filepath="E:\workspace\GoGank\GoGank.iml" />
       <module fileurl="file://F:\workspace\GoGank\GoGank.iml" filepath="F:\workspace\GoGank\GoGank.iml" />
+      <module fileurl="file://E:\workspace\GoGank\GoGank.iml" filepath="E:\workspace\GoGank\GoGank.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://F:\workspace\GoGank\app\app.iml" filepath="F:\workspace\GoGank\app\app.iml" />
-      <module fileurl="file://E:\workspace\GoGank\app\app.iml" filepath="E:\workspace\GoGank\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package com.sunnyxibei.gogank.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,23 +19,22 @@ import com.sunnyxibei.gogank.global.GlobalConstant;
  */
 public class BrowserActivity extends AppCompatActivity {
 
-    private Intent intent;
     private String title;
-    private WebSettings webSettings;
     private WebView mWebView;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
 
-        intent = getIntent();
+        Intent intent = getIntent();
         String url = intent.getStringExtra(GlobalConstant.DESC_URL);
         title = intent.getStringExtra(GlobalConstant.TITLE);
         initActionBar();
 
-        mWebView = (WebView) findViewById(R.id.webview);
-        webSettings = mWebView.getSettings();
+        mWebView = findViewById(R.id.webview);
+        WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
