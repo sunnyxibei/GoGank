@@ -1,5 +1,6 @@
 package com.sunnyxibei.gogank.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,8 +11,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sdsmdg.tastytoast.TastyToast;
@@ -38,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 设置contentFeature,可使用切换动画
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        Transition explode = TransitionInflater.from(this).inflateTransition(android.R.transition.explode);
+        getWindow().setEnterTransition(explode);
+
         setContentView(R.layout.activity_main);
 
         initView();
@@ -98,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, BrowserActivity.class);
                     intent.putExtra(GlobalConstant.DESC_URL, result.url);
                     intent.putExtra(GlobalConstant.TITLE, result.desc);
-                    startActivity(intent);
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(MainActivity.this).toBundle());
                 });
             }
         };
