@@ -1,6 +1,3 @@
 <resources>
-    <string name="app_name">Go Gank !</string>
-    <string name="action_search">搜索</string>
-    <string name="open">打开了</string>
-    <string name="close">关闭了</string>
+    <string name="app_name">Go Gank</string>
 </resources>
