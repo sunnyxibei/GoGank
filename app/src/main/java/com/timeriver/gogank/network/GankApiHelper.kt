@@ -4,6 +4,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,6 +19,7 @@ class GankApiHelper private constructor() {
     init {
         val client = OkHttpClient.Builder()
             .addInterceptor(StethoInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .build()
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
