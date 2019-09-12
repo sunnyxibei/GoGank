@@ -48,7 +48,6 @@ class SocketServerService : Service() {
 
         while (true) {
             val accept = server.accept()
-            //学生客户端连接成功，记录
             if (accept != null) {
 
             }
