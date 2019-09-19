@@ -3,39 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/fragment_1">
+    app:startDestination="@id/fragment_android_news">
 
     <fragment
-        android:id="@+id/fragment_1"
-        android:name="com.timeriver.gogank.fragment.MainPage1Fragment"
+        android:id="@+id/fragment_android_news"
+        android:name="com.timeriver.gogank.ui.fragment.AndroidNewsFragment"
         android:label="MainPage1Fragment"
-        tools:layout="@layout/fragment_main_page_1">
+        tools:layout="@layout/fragment_android_news">
         <action
-            android:id="@+id/action_page_2"
-            app:destination="@+id/fragment_2" />
+            android:id="@+id/action_page_android_news"
+            app:destination="@id/fragment_android_news"
+            app:launchSingleTop="true" />
     </fragment>
-
-    <fragment
-        android:id="@+id/fragment_2"
-        android:name="com.timeriver.gogank.fragment.MainPage2Fragment"
-        android:label="MainPage1Fragment"
-        tools:layout="@layout/fragment_main_page_2">
-        <action
-            android:id="@+id/action_page_1"
-            app:popUpTo="@+id/fragment_1" />
-        <action
-            android:id="@+id/action_page_3"
-            app:destination="@id/nav_graph_page3" />
-    </fragment>
-
-    <navigation
-        android:id="@+id/nav_graph_page3"
-        app:startDestination="@id/fragment_3">
-        <fragment
-            android:id="@+id/fragment_3"
-            android:name="com.timeriver.gogank.fragment.MainPage3Fragment"
-            android:label="MainPage1Fragment"
-            tools:layout="@layout/fragment_main_page_3" />
-    </navigation>
 
 </navigation>

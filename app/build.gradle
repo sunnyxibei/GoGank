@@ -30,25 +30,25 @@ dependencies {
     baseLib()
     api fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     apis([
+            androidx.lifecycle,
+            androidx.lifecycleRuntime,
+            androidx.livedataKtx,
+            androidx.paging_ktx,
             androidx.recyclerview,
+            androidx.navigation.runtime_ktx,
+            androidx.navigation.fragment_ktx,
+            androidx.navigation.ui_ktx,
             lib.retrofit,
             lib.retrofit_gson,
             lib.rxandroid,
             lib.logger,
             lib.koin_viewmodel,
-            androidx.lifecycle,
-            androidx.lifecycleRuntime,
-            androidx.livedataKtx,
-            androidx.paging_ktx,
-            'me.jessyan:autosize:1.1.2',
             lib.coroutine.core,
             lib.coroutine.android,
             lib.lottie,
-            lib.glide,
-            lib.bugly
+            lib.glide
     ])
     debugApi lib.gander.imdb
     releaseApi lib.gander.noop
-    kapt lib.arouterCompiler
     kapt lib.glide_compiler
 }
