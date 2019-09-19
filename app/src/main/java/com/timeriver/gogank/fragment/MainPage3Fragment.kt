@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.timeriver.gogank.R
-import com.timeriver.gogank.service.SocketServerService
-import kotlinx.android.synthetic.main.fragment_main_page_3.*
 
 class MainPage3Fragment : Fragment() {
 
