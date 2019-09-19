@@ -12,14 +12,21 @@ class AndroidNewsDataSource(
     private val repository: GankRepository
 ) : PageKeyedDataSource<Int, AndroidNewsModel>() {
 
+    companion object {
+        private const val INITIAL_KEY = 1
+    }
+
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, AndroidNewsModel>
     ) {
         coroutineScope.launch {
             try {
-                repository.getAndroidNewsList(pageNo = 1, pageSize = params.requestedLoadSize).run {
-                    callback.onResult(this, null, 2)
+                repository.getAndroidNewsList(
+                    pageNo = INITIAL_KEY,
+                    pageSize = params.requestedLoadSize
+                ).run {
+                    callback.onResult(this, null, INITIAL_KEY + 1)
                 }
             } catch (e: Exception) {
                 handleApiErrors(e) {

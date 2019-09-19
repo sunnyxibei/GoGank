@@ -30,10 +30,11 @@ class AndroidNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         list_android_news.layoutManager = LinearLayoutManager(requireContext())
-
         val adapter = AndroidNewsAdapter(requireContext())
         adapter.onItemClickListener = {
-            BrowserActivity.start(requireActivity(), it.url)
+            it.url?.run {
+                BrowserActivity.start(requireActivity(), this)
+            }
         }
         list_android_news.adapter = adapter
         androidNewsViewModel.normalClassData.observe(this, Observer {
