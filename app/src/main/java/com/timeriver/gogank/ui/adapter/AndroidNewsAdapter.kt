@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.item_android_news.view.*
 class AndroidNewsAdapter(private val context: Context) :
     PagedListAdapter<AndroidNewsModel, AndroidNewsAdapter.ViewHolder>(COMPARATOR) {
 
+    var onItemClickListener: ((AndroidNewsModel) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(context).inflate(R.layout.item_android_news, parent, false)
@@ -28,6 +30,9 @@ class AndroidNewsAdapter(private val context: Context) :
             holder.tvAuthor.text = who
             holder.chipType.text = type
             holder.chipId.text = position.toString()
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.invoke(this)
+            }
         }
     }
 
