@@ -2,7 +2,6 @@ package com.timeriver.gogank.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.Config
 import androidx.paging.DataSource
 import androidx.paging.PagedList
@@ -20,7 +19,7 @@ class AndroidNewsViewModel(repository: GankRepository) : ViewModel() {
     val normalClassData: LiveData<PagedList<AndroidNewsModel>> =
         object : DataSource.Factory<Int, AndroidNewsModel>() {
             override fun create(): DataSource<Int, AndroidNewsModel> =
-                AndroidNewsDataSource(viewModelScope, repository)
+                AndroidNewsDataSource(repository)
         }.toLiveData(
             config = Config(
                 pageSize = PAGE_SIZE,
