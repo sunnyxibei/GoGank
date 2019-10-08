@@ -4,11 +4,13 @@ import androidx.paging.PageKeyedDataSource
 import com.timeriver.gogank.domain.exception.ServerException
 import com.timeriver.gogank.domain.model.AndroidNewsModel
 import com.timeriver.gogank.extension.handleApiErrors
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class AndroidNewsDataSource(private val repository: GankRepository) :
-    PageKeyedDataSource<Int, AndroidNewsModel>() {
+class AndroidNewsDataSource(
+    private val repository: GankRepository,
+    private val scope: CoroutineScope
+) : PageKeyedDataSource<Int, AndroidNewsModel>() {
 
     companion object {
         private const val INITIAL_KEY = 1
@@ -18,7 +20,7 @@ class AndroidNewsDataSource(private val repository: GankRepository) :
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, AndroidNewsModel>
     ) {
-        GlobalScope.launch {
+        scope.launch {
             try {
                 repository.getAndroidNewsList(
                     pageNo = INITIAL_KEY,
@@ -39,7 +41,7 @@ class AndroidNewsDataSource(private val repository: GankRepository) :
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, AndroidNewsModel>) {
-        GlobalScope.launch {
+        scope.launch {
             try {
                 repository.getAndroidNewsList(
                     pageNo = params.key,
