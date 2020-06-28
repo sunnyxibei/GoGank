@@ -3,7 +3,7 @@ versions.compile_sdk = 28
 versions.target_sdk = 28
 versions.min_sdk = 21
 
-versions.kotlin = "1.3.50"
+versions.kotlin = "1.3.72"
 versions.androidSupport = "28.0.0"
 versions.robolectric = "3.8"
 versions.leakcanary = "2.0-alpha-2"
@@ -32,7 +32,7 @@ versions.espresso = "3.3.0-alpha02"
 versions.uiautomator = "2.2.0"
 versions.junit = "4.12"
 
-versions.coroutine = "1.1.1"
+versions.coroutine = "1.3.7"
 versions.material = "1.1.0-alpha09"
 
 versions.koin = "2.0.1"

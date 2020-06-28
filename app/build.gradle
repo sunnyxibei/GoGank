@@ -51,6 +51,9 @@ dependencies {
             lib.lottie,
             lib.glide
     ])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     debugApi lib.gander.imdb
     releaseApi lib.gander.noop
     kapt lib.glide_compiler
