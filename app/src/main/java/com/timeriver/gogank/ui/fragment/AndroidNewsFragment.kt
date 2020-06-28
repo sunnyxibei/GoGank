@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.timeriver.gogank.R
 import com.timeriver.gogank.ui.activity.BrowserActivity
@@ -32,13 +33,11 @@ class AndroidNewsFragment : Fragment() {
         list_android_news.layoutManager = LinearLayoutManager(requireContext())
         val adapter = AndroidNewsAdapter(requireContext())
         adapter.onItemClickListener = {
-            it.url?.run {
-                BrowserActivity.start(requireActivity(), this)
-            }
+            BrowserActivity.start(requireActivity(), it.url.orEmpty())
         }
         list_android_news.adapter = adapter
-        androidNewsViewModel.normalClassData.observe(this, Observer {
+        androidNewsViewModel.normalClassData.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
     }
 }

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoGank.iml" filepath="$PROJECT_DIR$/GoGank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GoGank-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GoGank-app.iml" group="GoGank/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-GoGank.iml" filepath="$PROJECT_DIR$/.idea/modules/android-GoGank.iml" group="GoGank" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

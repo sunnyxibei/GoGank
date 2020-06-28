@@ -42,14 +42,12 @@ class AndroidNewsAdapter(private val context: Context) :
             override fun areContentsTheSame(
                 oldItem: AndroidNewsModel,
                 newItem: AndroidNewsModel
-            ): Boolean =
-                oldItem == newItem
+            ): Boolean = oldItem == newItem
 
             override fun areItemsTheSame(
                 oldItem: AndroidNewsModel,
                 newItem: AndroidNewsModel
-            ): Boolean =
-                oldItem.id == newItem.id
+            ): Boolean = oldItem.id == newItem.id
         }
     }
 
