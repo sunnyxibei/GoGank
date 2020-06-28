@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_android_news"
-        android:name="com.timeriver.gogank.ui.fragment.AndroidNewsFragment"
+        android:name="com.timeriver.gogank.ui.fragment.ListFragment"
         android:label="MainPage1Fragment"
         tools:layout="@layout/fragment_android_news">
         <action
